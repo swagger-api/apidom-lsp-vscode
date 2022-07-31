@@ -14,7 +14,7 @@ suite('Should do completion', () => {
     });
 */
     await testCompletion(docUri, new vscode.Position(1, 0), {
-      items: [{ label: 'openapi', kind: vscode.CompletionItemKind.Text }],
+      items: [{ label: 'asyncapi', kind: vscode.CompletionItemKind.Text }],
     });
   });
 });
