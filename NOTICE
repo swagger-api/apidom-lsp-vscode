@@ -1,0 +1,10 @@
+apidom-lsp-vscode
+Copyright 2020, 2022 SmartBear Software Inc.
+apidom-lsp-vscode is licensed under Apache 2.0 license.
+Copy of the Apache 2.0 license can be found in `LICENSE` file.
+
+vscode-openapi
+Copyright 42Crunch
+File client/src/preview.ts (the file) was highly inspired by vscode-openapi project,
+which is licensed under AGPL-3.0-only and hosted on GitHub: https://github.com/42Crunch/vscode-openapi.
+Copy of the AGPL-3.0-only license can be found at following link: https://github.com/42Crunch/vscode-openapi/blob/master/LICENSE.txt.

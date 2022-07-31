@@ -1,0 +1,98 @@
+import {LinterMeta} from '@swagger-api/apidom-ls';
+
+export function rules(): LinterMeta[] {
+return [
+    {
+        name: 'SB-API-050-property-names',
+        description: 'property names must be camelCase and alphanumeric',
+        recommended: true,
+        code: 20001,
+        source: 'apilint',
+        severity: 1,
+        message: 'properties MUST follow camelCase',
+        given: ['schema'],
+        conditions: [
+            {
+                targets: [{ path: 'parent' }],
+                function: 'apilintElementOrClass',
+                params: [['json-schema-properties']],
+            },
+        ],
+        linterFunction: 'apilintKeyCasing',
+        linterParams: ['camel'],
+        marker: 'key',
+        data: {},
+    },
+    {
+        name: 'SB-API-050-query-parameter-names',
+        description: 'query parameter names must be camelCase',
+        recommended: true,
+        code: 20002,
+        source: 'apilint',
+        severity: 1,
+        message: 'parameter names MUST follow camelCase',
+        given: ['parameter'],
+        target: 'name',
+        conditions: [
+            {
+                targets: [{ path: 'in' }],
+                function: 'apilintValueOrArray',
+                params: [['query']],
+            },
+        ],
+        linterFunction: 'apilintValueCasing',
+        linterParams: ['camel'],
+        marker: 'key',
+        markerTarget: 'name',
+        data: {},
+    },
+    {
+        name: 'SB-API-051-path-segments',
+        description: 'path segments must be kebab-case',
+        recommended: true,
+        code: 20003,
+        source: 'apilint',
+        severity: 1,
+        message: 'path segments MUST follow kebab-case (lower case and separated with hyphens).',
+        given: ['pathItem'],
+        conditions: [
+            {
+                targets: [{ path: 'parent' }],
+                function: 'apilintElementOrClass',
+                params: [['paths']],
+            },
+        ],
+        linterFunction: 'apilintKeyRegex',
+        linterParams: ['^(/|[a-z0-9-.]+|{[a-zA-Z0-9_]+})+$'],
+        marker: 'key',
+        data: {},
+    },
+    {
+        name: 'TEST-WITH-CUSTOM-FUNCTION',
+        description: 'test custom native function',
+        recommended: true,
+        code: 20004,
+        source: 'AcmeLint',
+        severity: 2,
+        message: 'missing Acme Extension',
+        given: ['schema'],
+        linterFunction: 'requiredAcmeExtension',
+        marker: 'key',
+        data: {},
+    },
+    {
+        name: 'TEST-WITH-EVAL-FUNCTION',
+        description: 'test custom eval function',
+        recommended: true,
+        code: 20004,
+        source: 'AcmeLint',
+        severity: 2,
+        message: 'missing Acme Team',
+        given: ['contact'],
+        linterFunction: 'requiredAcmeTeam',
+        marker: 'key',
+        data: {},
+    },
+];
+
+}
