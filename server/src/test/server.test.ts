@@ -77,7 +77,9 @@ describe('ApiDOM LSP Tests', function () {
   it('initialize', function (finished) {
     const responseId = initialize();
     lspProcess.once('message', function (json) {
+      // @ts-ignore
       assert.strictEqual(json.id, responseId);
+      // @ts-ignore
       const { capabilities } = json.result;
       assert.strictEqual(capabilities.textDocumentSync, TextDocumentSyncKind.Full);
       assert.strictEqual(capabilities.codeActionProvider.codeActionKinds[0], 'quickfix');
@@ -125,8 +127,11 @@ describe('ApiDOM LSP Tests', function () {
       },
     });
     lspProcess.on('message', (json) => {
+      // @ts-ignore
       if (json.id === id) {
+        // @ts-ignore
         assert.strictEqual(json.result.contents.kind, MarkupKind.Markdown);
+        // @ts-ignore
         assert.strictEqual(json.result.contents.value, '***openapi***: **openapi**\n');
         finished();
       }
@@ -149,7 +154,9 @@ describe('ApiDOM LSP Tests', function () {
     });
 
     lspProcess.on('message', (json) => {
+      // @ts-ignore
       if (json.id === id) {
+        // @ts-ignore
         assert.notStrictEqual(json.result.data, [0, 1, 9, 15, 0]);
         finished();
       }
