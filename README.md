@@ -1,4 +1,4 @@
-# ApiDOM VsCode Extension
+# ApiDOM VS Code Extension
 
 ## Functionality
 
@@ -19,7 +19,7 @@ This extension is based on [ApiDOM](https://github.com/swagger-api/apidom) and p
 
 ```
 .
-├── client // VSCode Language Client + Extension
+├── client // VS Code Language Client + Extension
 │   ├── src
 │   │   ├── test // End to End tests for Language Client / Server
 │   │   └── extension.ts // Language Client entry point
@@ -50,7 +50,7 @@ section in their documentation.
 We recommend using the latest version of Node.js@16 though. We're using [node-gyp](https://www.npmjs.com/package/node-gyp) to build some fragments that require [Python 3.x](https://www.python.org/downloads/).
 [emscripten](https://emscripten.org/docs/getting_started/downloads.html) or [docker](https://www.docker.com/) needs to be installed
 on your operating system. We strongly recommend going with a docker option.
-[VSCode IDE](https://code.visualstudio.com/) needs to be installed on your system.
+[VS Code IDE](https://code.visualstudio.com/) needs to be installed on your system.
 
 ### Installation
 
@@ -59,15 +59,15 @@ on your operating system. We strongly recommend going with a docker option.
  $ npm run build
 ```
 
-### Run VSCode extension in VSCode instance
+### Run VS Code extension in VSCode instance
 
-- Open VCCode
-- Open this repository in VSCode: `File` -> `Open Folder`
+- Open VS Code
+- Open this repository in VS Code: `File` -> `Open Folder`
 - From `Activity Bar`, click on `Run and Debug` icon
 - Select `Launch Client` from the dropdown menu
 - Run the launch config by clicking on small green play button
 - If you want to debug the server as well use the launch configuration `Attach to Server`
-- New VSCode window will open where ApiDOM VsCode Extension is loaded in
+- New VS Code window will open where ApiDOM VS Code Extension is loaded in
 - Create new text file: `File` -> `New Text File`
 - Start writing your specification document (OpenAPI, AsyncAPI, API Design Systems)
 
