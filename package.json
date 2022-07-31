@@ -4,6 +4,10 @@
 	"publisher": "SmartBear",
 	"author": "Francesco Tumanischvili (SmeartBear)",
 	"license": "Apache-2.0",
+  "workspaces": [
+    "client",
+    "server"
+  ],
 	"contributors": [
 		{
 			"name": "Frank Kilcommins",
@@ -222,26 +226,27 @@
 		"vscode:prepublish": "npm run build",
 		"compile": "tsc -b",
 		"watch": "tsc -b -w",
-		"postinstall": "cd client && npm install && cd ../server && npm install && cd ..",
 		"build": "cd server && npm run build && cd ../client && tsc -b && cd ..",
 		"test": "cd server && npm run test && cd .. && sh ./scripts/e2e.sh",
 		"security-audit:server": "cd server && npm audit --production --only=prod --audit-level=low && npm audit  --only=dev --audit-level=moderate",
 		"security-audit:client": "cd client && npm audit --production --only=prod --audit-level=low && npm audit  --only=dev --audit-level=moderate"
 	},
 	"devDependencies": {
-		"@types/mocha": "^8.0.3",
-		"@types/node": "^12.12.0",
-		"@typescript-eslint/eslint-plugin": "^4.12.0",
-		"@typescript-eslint/parser": "^4.12.0",
-		"eslint": "^7.17.0",
-		"eslint-config-airbnb-typescript": "^12.0.0",
-		"eslint-config-prettier": "^7.1.0",
-		"eslint-plugin-import": "^2.22.1",
-		"eslint-plugin-mocha": "^8.0.0",
-		"eslint-plugin-prettier": "^3.3.1",
-		"prettier": "=2.0.5",
-		"mocha": "^8.1.1",
-		"ts-node": "^9.0.0",
-		"typescript": "^4.0.2"
+		"@types/mocha": "^9.1.1",
+		"@types/node": "^18.6.3",
+		"@typescript-eslint/eslint-plugin": "^5.31.0",
+		"@typescript-eslint/parser": "^5.31.0",
+    "eslint": "=8.20.0",
+    "eslint-config-airbnb": "=19.0.4",
+    "eslint-config-airbnb-base": "=15.0.0",
+    "eslint-config-airbnb-typescript": "=17.0.0",
+    "eslint-config-prettier": "=8.5.0",
+    "eslint-plugin-import": "=2.26.0",
+    "eslint-plugin-mocha": "=10.1.0",
+    "eslint-plugin-prettier": "=4.2.1",
+		"prettier": "=2.7.1",
+		"mocha": "^10.0.0",
+		"ts-node": "^10.9.1",
+		"typescript": "^4.7.4"
 	}
 }

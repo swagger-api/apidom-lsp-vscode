@@ -41,7 +41,7 @@ class PreviewPanel {
         (message) => {
           switch (message.command) {
             case 'init': {
-              resolve();
+              resolve(undefined);
               this.initP = null;
             }
           }
