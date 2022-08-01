@@ -19,6 +19,7 @@ This extension is based on [ApiDOM](https://github.com/swagger-api/apidom) and p
 
 ```
 .
+├── bin/apidom-lsp-vscode-${version}.vsix // packaged extension ready for installation in VS Code
 ├── client // VS Code Language Client + Extension
 │   ├── src
 │   │   ├── test // End to End tests for Language Client / Server
@@ -29,6 +30,13 @@ This extension is based on [ApiDOM](https://github.com/swagger-api/apidom) and p
         ├── test // LSP Server tests
         └── server.ts // Language Server entry point, uses apidom-ls
 ```
+
+## Try it out
+
+The extension can be [installed](https://code.visualstudio.com/docs/editor/extension-marketplace#_install-from-a-vsix) The extension can be [installed](https://code.visualstudio.com/docs/editor/extension-marketplace#_install-from-a-vsix) from the `VSIX` file located in [bin](./bin) directory
+
+Once installation is finished, open any [OpenAPI](https://www.openapis.org/), [AsyncAPI](https://www.asyncapi.com/) or [API Design Systems](https://apidesign.systems/) document in VS Code.
+
 
 
 ## Getting started
@@ -74,7 +82,7 @@ on your operating system. We strongly recommend going with a docker option.
 ### Specification preview
 
 You can preview your specification document by right mouse click -> `Command Pallete` -> `Show Preview using SwaggerUI`.
-The pane with rendered specification document is opened and re-rendered whenever you editor the
+The pane with rendered specification document is opened and re-rendered whenever you edit the
 specification document.
 
 ### Test Server component
