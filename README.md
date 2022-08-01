@@ -33,7 +33,7 @@ This extension is based on [ApiDOM](https://github.com/swagger-api/apidom) and p
 
 ## Try it out
 
-The extension can be [installed](https://code.visualstudio.com/docs/editor/extension-marketplace#_install-from-a-vsix) The extension can be [installed](https://code.visualstudio.com/docs/editor/extension-marketplace#_install-from-a-vsix) from the `VSIX` file located in [bin](./bin) directory
+The extension can be [installed](https://code.visualstudio.com/docs/editor/extension-marketplace#_install-from-a-vsix) from the `VSIX` file located in [bin](./bin) directory
 
 Once installation is finished, open any [OpenAPI](https://www.openapis.org/), [AsyncAPI](https://www.asyncapi.com/) or [API Design Systems](https://apidesign.systems/) document in VS Code.
 
