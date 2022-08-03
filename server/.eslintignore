@@ -1,6 +1,8 @@
 /dist
 /es
 /cjs
+/out
+/scripts
 /config
 /types
 /.nyc_output

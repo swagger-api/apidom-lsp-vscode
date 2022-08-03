@@ -8,7 +8,7 @@ suite('Should do completion', () => {
   const docUri = getDocUri('asyncbasic.yaml');
 
   test('Completes JS/TS in txt file', async () => {
-/*
+    /*
     await testCompletion(docUri, new vscode.Position(0, 1), {
       items: [{ label: 'openapi', kind: vscode.CompletionItemKind.Text }],
     });

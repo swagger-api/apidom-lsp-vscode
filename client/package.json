@@ -26,6 +26,10 @@
 	"engines": {
 		"vscode": "^1.52.1"
 	},
+  "scripts": {
+    "lint": "eslint ./",
+    "lint:fix": "eslint ./ --fix"
+  },
 	"dependencies": {
 		"vscode-languageclient": "^7.0.0"
 	},

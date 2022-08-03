@@ -45,6 +45,8 @@
 		"build:js": "babel src --out-dir out --extensions \".ts,.tsx\" --source-maps inline",
 		"build:prepare-config": "shx mkdir -p out/configuration/default/linter-functions-async-api && shx mkdir -p out/configuration/default/linter-functions-open-api",
 		"build:config": "shx cp -R src/configuration/default/linter-functions-async-api/*.js out/configuration/default/linter-functions-async-api/ && shx cp -R src/configuration/default/linter-functions-open-api/*.js out/configuration/default/linter-functions-open-api/",
+    "lint": "eslint ./",
+    "lint:fix": "eslint ./ --fix",
 		"test": "mocha --timeout 10000 out/test"
 	},
   "dependencies": {
