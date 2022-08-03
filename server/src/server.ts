@@ -91,7 +91,7 @@ async function reloadFromConfiguration() {
     //console.log('workspaceFolders ', JSON.stringify(workspaceFolders));
     const context: LanguageServiceContext = {
       metadata: configuration(globalSettings),
-      logLevel: LogLevel.DEBUG,
+      logLevel: LogLevel.ERROR,
       defaultContentLanguage: {
         namespace: 'openapi',
         version: '3.1.0',
@@ -125,7 +125,7 @@ connection.onInitialize(async (params: InitializeParams) => {
   globalSettings = await getGlobalSettings();
   const context: LanguageServiceContext = {
     metadata: configuration(globalSettings),
-    logLevel: LogLevel.DEBUG,
+    logLevel: LogLevel.ERROR,
     defaultContentLanguage: {
       namespace: 'openapi',
       version: '3.1.0',

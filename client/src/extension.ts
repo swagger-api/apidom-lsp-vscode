@@ -1,5 +1,5 @@
 import * as path from 'path';
-import { workspace, ExtensionContext } from 'vscode';
+import { workspace, ExtensionContext, languages } from 'vscode';
 import {
   LanguageClient,
   LanguageClientOptions,
@@ -12,7 +12,42 @@ import * as preview from './preview';
 
 let client: LanguageClient;
 
+const oasDetectionRegExpJson = /"openapi"\s*:\s*"(?<version_json>3\.\d\.\d+)"/;
+const oasDetectionRegExpYaml =
+  /(?<YAML>^(["']?)openapi\2\s*:\s*(["']?)(?<version_yaml>3\.\d\.\d+)\3)|(?<JSON>"openapi"\s*:\s*"(?<version_json>3\.\d\.\d+)")/m;
+
+const asyncDetectionRegExpJson = /"asyncapi"\s*:\s*"(?<version_json>2\.\d+\.\d+)"/;
+const asyncApiDetectionRegExpYaml =
+  /(?<YAML>^(["']?)asyncapi\2\s*:\s*(["']?)(?<version_yaml>2\.\d+\.\d+)\3)|(?<JSON>"asyncapi"\s*:\s*"(?<version_json>2\.\d+\.\d+)")/m;
+
+const adsDetectionRegExpJson = /"version"\s*:\s*"(?<version_json>2021-05-07)"/;
+const adsDetectionRegExpYaml =
+  /(?<YAML>^(["']?)version\2\s*:\s*(["']?)(?<version_yaml>2021-05-07)\3)|(?<JSON>"version"\s*:\s*"(?<version_json>2021-05-07)")/m;
+
+export function isApiDOM(text: string): boolean {
+  return oasDetectionRegExpJson.test(text) ||
+    oasDetectionRegExpYaml.test(text) ||
+    asyncDetectionRegExpJson.test(text) ||
+    asyncApiDetectionRegExpYaml.test(text) ||
+    adsDetectionRegExpJson.test(text) ||
+    adsDetectionRegExpYaml.test(text);
+}
+
 export function activate(context: ExtensionContext): void {
+  workspace.textDocuments.forEach(doc => {
+    if (isApiDOM(doc.getText())) {
+      languages.setTextDocumentLanguage(doc, "apidom")
+    }
+  })
+
+  context.subscriptions.push(
+    workspace.onDidOpenTextDocument(doc => {
+      if (isApiDOM(doc.getText())) {
+        languages.setTextDocumentLanguage(doc, "apidom")
+      }
+    }),
+  )
+
   // The server is implemented in node
   const serverModule = context.asAbsolutePath(path.join('server', 'out', 'server.js'));
   // The debug options for the server
