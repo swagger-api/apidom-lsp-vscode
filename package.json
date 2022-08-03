@@ -2,7 +2,7 @@
   "name": "apidom-lsp-vscode",
   "description": "ApiDOM LSP VsCode extension / LSP server",
   "publisher": "SmartBear",
-  "author": "Francesco Tumanischvili (SmeartBear)",
+  "author": "Francesco Tumanischvili (SmartBear)",
   "license": "Apache-2.0",
   "workspaces": [
     "client",
