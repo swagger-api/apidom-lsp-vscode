@@ -106,7 +106,7 @@ async function reloadFromConfiguration() {
 
 connection.onDidChangeConfiguration(async (change) => {
   if (hasConfigurationCapability) {
-    globalSettings = await  getGlobalSettings();
+    globalSettings = await getGlobalSettings();
   } else {
     globalSettings = <ApidomSettings>(change.settings.apidom || defaultSettings);
   }

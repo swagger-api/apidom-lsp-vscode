@@ -13,7 +13,7 @@
 		"LSP"
 	],
 	"publisher": "SmartBear",
-	"author": "Francesco Tumanischvili (SmeartBear)",
+	"author": "Francesco Tumanischvili (SmartBear)",
 	"license": "Apache-2.0",
   "contributors": [
     {
@@ -40,11 +40,9 @@
     "postinstall": "node ./scripts/postinstall.js",
 		"type-check": "tsc --noEmit",
 		"type-check:watch": "npm run type-check -- --watch",
-		"build": "npm run build:types && npm run build:js && npm run build:prepare-config && npm run build:config",
+		"build": "npm run build:types && npm run build:js",
 		"build:types": "tsc --emitDeclarationOnly",
 		"build:js": "babel src --out-dir out --extensions \".ts,.tsx\" --source-maps inline",
-		"build:prepare-config": "shx mkdir -p out/configuration/default/linter-functions-async-api && shx mkdir -p out/configuration/default/linter-functions-open-api",
-		"build:config": "shx cp -R src/configuration/default/linter-functions-async-api/*.js out/configuration/default/linter-functions-async-api/ && shx cp -R src/configuration/default/linter-functions-open-api/*.js out/configuration/default/linter-functions-open-api/",
     "lint": "eslint ./",
     "lint:fix": "eslint ./ --fix",
 		"test": "mocha --timeout 10000 out/test"

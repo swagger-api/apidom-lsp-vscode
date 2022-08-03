@@ -4,7 +4,7 @@ import { Metadata, config } from '@swagger-api/apidom-ls';
 
 import { ApidomSettings } from './server-types';
 import { functions } from './functions';
-import { loadFunctions } from './utils';
+// import { loadFunctions } from './utils';
 
 /* function loadLinterFunctions(dir: string): LinterFunctions {
   const linterFunctions: LinterFunctions = {};
@@ -49,25 +49,33 @@ export function configuration(settings: ApidomSettings): Metadata {
     asyncapi: {},
   };
   customConfig.linterFunctions = {
-    openapi: { ...functions(), ...loadFunctions(path.join(__dirname, '..', 'src', 'functions')) },
+    openapi: { ...functions() },
   };
   if (settings.OpenApi?.rules && settings.OpenApi?.rules.length !== 0) {
-    const rulesOpenApi = JSON.parse(fs.readFileSync(path.join(settings.OpenApi?.rules)).toString());
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    // customConfig.rules!.openapi!.lint!.push(...rulesOpenApi);
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    customConfig.rules!['openapi'] = {
-      lint: rulesOpenApi,
-    };
+    try {
+      const rulesOpenApi = JSON.parse(fs.readFileSync(path.join(settings.OpenApi?.rules)).toString());
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      // customConfig.rules!.openapi!.lint!.push(...rulesOpenApi);
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      customConfig.rules!['openapi'] = {
+        lint: rulesOpenApi,
+      };
+    } catch (e) {
+      console.error(e);
+    }
   }
   if (settings.AsyncApi?.rules && settings.AsyncApi?.rules.length !== 0) {
-    const rulesAsyncApi = JSON.parse(
-      fs.readFileSync(path.join(settings.AsyncApi?.rules)).toString(),
-    );
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    customConfig.rules!['asyncapi'] = {
-      lint: rulesAsyncApi,
-    };
+    try {
+      const rulesAsyncApi = JSON.parse(
+        fs.readFileSync(path.join(settings.AsyncApi?.rules)).toString(),
+      );
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      customConfig.rules!['asyncapi'] = {
+        lint: rulesAsyncApi,
+      };
+    } catch (e) {
+      console.error(e);
+    }
   }
 
   /*

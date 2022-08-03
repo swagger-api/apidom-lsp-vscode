@@ -1,9 +1,11 @@
 {
   "name": "apidom-lsp-vscode",
-  "description": "ApiDOM LSP VsCode extension / LSP server",
-  "icon": "icon.png",
+  "displayName": "ApiDOM LSP OpenAPI / AsyncAPI",
+  "description": "ApiDOM LSP VS Code extension / LSP server",
+  "icon": "images/icon.png",
   "publisher": "SmartBear",
-  "author": "Francesco Tumanischvili (SmeartBear)",
+  "homepage": "https://github.com/swagger-api/apidom-lsp-vscode",
+  "author": "Francesco Tumanischvili (SmartBear)",
   "license": "Apache-2.0",
   "workspaces": [
     "client",
@@ -35,6 +37,8 @@
     "API",
     "OpenAPI",
     "AsyncAPI",
+    "LSP",
+    "Swagger",
     "Editor"
   ],
   "engines": {
@@ -64,8 +68,8 @@
         ],
         "configuration": "./language-configuration.json",
         "icon": {
-          "light": "./icon.png",
-          "dark": "./icon.png"
+          "light": "./images/icon.png",
+          "dark": "./images/icon.png"
         }
       }
     ],
