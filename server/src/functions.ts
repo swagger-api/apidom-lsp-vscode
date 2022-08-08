@@ -1,6 +1,5 @@
-
 import {Element} from "minim";
-import {LinterFunctions} from "@swagger-api/apidom-ls";
+import apidom_ls, {LinterFunctions} from "@swagger-api/apidom-ls";
 import {isObject, isMember, isArray, isBoolean, isNumber, isString} from "./utils";
 
 export function functions(): LinterFunctions {
@@ -12,7 +11,15 @@ return {
             }
         }
         return true;
+    },
+  "requiredAcmeTeam": (element) => {
+    if (element && apidom_ls.isObjectElement(element) && element.element === 'contact') {
+      if (!element.get('x-acme-team')) {
+        return false;
+      }
     }
+    return true;
+  }
 };
 
 }

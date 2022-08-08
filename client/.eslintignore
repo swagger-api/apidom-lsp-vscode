@@ -3,6 +3,7 @@
 /cjs
 /config
 /types
+/out
 /.nyc_output
 /node_modules
 /**/*.js

@@ -4,10 +4,15 @@ import * as vscode from 'vscode';
 
 class PreviewPanel {
   initP: Promise<undefined> | null = null;
+
   panel: vscode.WebviewPanel | null = null;
+
   output: vscode.OutputChannel | null = null;
+
   context: vscode.ExtensionContext | null = null;
+
   previewURI: string | null = null;
+
   closedBy: 'human' | 'active-text-editor' | null = null;
 
   constructor(context: vscode.ExtensionContext, output: vscode.OutputChannel) {
@@ -33,7 +38,7 @@ class PreviewPanel {
       {
         enableScripts: true,
         retainContextWhenHidden: true,
-      }
+      },
     );
 
     this.initP = new Promise((resolve) => {
@@ -47,10 +52,10 @@ class PreviewPanel {
           }
         },
         undefined,
-        this.context.subscriptions
+        this.context.subscriptions,
       );
       this.context.subscriptions.push(disposable);
-    })
+    });
 
     disposable = this.panel.onDidDispose(
       () => {
@@ -61,32 +66,39 @@ class PreviewPanel {
         this.output.appendLine('Closing SwaggerUI Preview');
       },
       undefined,
-      this.context.subscriptions
+      this.context.subscriptions,
     );
     this.context.subscriptions.push(disposable);
 
     const jsAsset = this.panel.webview.asWebviewUri(
       vscode.Uri.file(
-        path.join(this.context.extensionPath, 'client', 'src', 'webview', 'swagger-ui.js')
-      )
+        path.join(this.context.extensionPath, 'client', 'src', 'webview', 'swagger-ui.js'),
+      ),
     );
     const cssAsset = this.panel.webview.asWebviewUri(
       vscode.Uri.file(
-        path.join(this.context.extensionPath, 'client', 'src', 'webview', 'swagger-ui.css')
-      )
+        path.join(this.context.extensionPath, 'client', 'src', 'webview', 'swagger-ui.css'),
+      ),
     );
 
-    const templateString = fs.readFileSync(
-      path.join(this.context.extensionPath, 'client', 'src', 'webview', 'index.html')
-    ).toString();
+    const templateString = fs
+      .readFileSync(path.join(this.context.extensionPath, 'client', 'src', 'webview', 'index.html'))
+      .toString();
     const template = this.makeTemplate(templateString);
-    this.panel.webview.html = template({ cspSource: this.panel.webview.cspSource, jsAsset, cssAsset });
+    this.panel.webview.html = template({
+      cspSource: this.panel.webview.cspSource,
+      jsAsset,
+      cssAsset,
+    });
 
     this.output.appendLine('Opening the preview');
   }
 
   makeTemplate(templateString) {
-    return (templateData) => new Function(`{${Object.keys(templateData).join(',')}}`, 'return `' + templateString + '`')(templateData);
+    return (templateData) =>
+      new Function(`{${Object.keys(templateData).join(',')}}`, `return \`${templateString}\``)(
+        templateData,
+      );
   }
 
   async preview(document: vscode.TextDocument) {
@@ -94,9 +106,12 @@ class PreviewPanel {
       await this.initP;
       this.output.appendLine(`Updating preview with text from ${document.uri}.`);
       this.previewURI = document.uri.toString();
-      this.panel.webview.postMessage({ command: 'preview', text: JSON.stringify(document.getText()) });
+      this.panel.webview.postMessage({
+        command: 'preview',
+        text: JSON.stringify(document.getText()),
+      });
     } else {
-      this.output.appendLine('Skipping updating the SwaggerUI Preview as it is closed.')
+      this.output.appendLine('Skipping updating the SwaggerUI Preview as it is closed.');
     }
   }
 
@@ -136,7 +151,7 @@ export function activate(context: vscode.ExtensionContext) {
         }
         await previewPanel.preview(document);
       }
-    }
+    },
   );
   context.subscriptions.push(disposable);
 
@@ -159,7 +174,7 @@ export function activate(context: vscode.ExtensionContext) {
     const uri = document.uri.toString();
     const extname = path.extname(uri);
 
-    if ((extname === '' || allowedExtnames.includes(extname))) {
+    if (extname === '' || allowedExtnames.includes(extname)) {
       // track documents without extensions or with all allowed extensions
       if (previewPanel.isClosed() && previewPanel.closedBy === 'active-text-editor') {
         previewPanel.open();

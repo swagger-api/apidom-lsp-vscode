@@ -91,7 +91,7 @@ async function reloadFromConfiguration() {
     //console.log('workspaceFolders ', JSON.stringify(workspaceFolders));
     const context: LanguageServiceContext = {
       metadata: configuration(globalSettings),
-      logLevel: LogLevel.DEBUG,
+      logLevel: LogLevel.ERROR,
       defaultContentLanguage: {
         namespace: 'openapi',
         version: '3.1.0',
@@ -106,7 +106,7 @@ async function reloadFromConfiguration() {
 
 connection.onDidChangeConfiguration(async (change) => {
   if (hasConfigurationCapability) {
-    globalSettings = await  getGlobalSettings();
+    globalSettings = await getGlobalSettings();
   } else {
     globalSettings = <ApidomSettings>(change.settings.apidom || defaultSettings);
   }
@@ -125,7 +125,7 @@ connection.onInitialize(async (params: InitializeParams) => {
   globalSettings = await getGlobalSettings();
   const context: LanguageServiceContext = {
     metadata: configuration(globalSettings),
-    logLevel: LogLevel.DEBUG,
+    logLevel: LogLevel.ERROR,
     defaultContentLanguage: {
       namespace: 'openapi',
       version: '3.1.0',

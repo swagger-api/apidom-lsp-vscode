@@ -1,8 +1,11 @@
 {
   "name": "apidom-lsp-vscode",
-  "description": "ApiDOM LSP VsCode extension / LSP server",
+  "displayName": "ApiDOM LSP OpenAPI / AsyncAPI",
+  "description": "ApiDOM LSP VS Code extension / LSP server",
+  "icon": "images/icon.png",
   "publisher": "SmartBear",
-  "author": "Francesco Tumanischvili (SmeartBear)",
+  "homepage": "https://github.com/swagger-api/apidom-lsp-vscode",
+  "author": "Francesco Tumanischvili (SmartBear)",
   "license": "Apache-2.0",
   "workspaces": [
     "client",
@@ -27,13 +30,24 @@
     "type": "git",
     "url": "https://github.com/swagger-api/apidom-lsp-vscode"
   },
-  "categories": [],
+  "bugs": {
+    "url": "https://github.com/swagger-api/apidom-lsp-vscode/issues"
+  },
+  "categories": [
+    "API",
+    "OpenAPI",
+    "AsyncAPI",
+    "LSP",
+    "Swagger",
+    "Editor"
+  ],
   "engines": {
     "vscode": "^1.52.1"
   },
   "activationEvents": [
     "onLanguage:apidom",
-    "onStartupFinished"
+    "onLanguage:json",
+    "onLanguage:yaml"
   ],
   "main": "./client/out/extension",
   "enableProposedApi": true,
@@ -48,17 +62,15 @@
           "openapi",
           "asyncapi"
         ],
-        "extensions": [
-          ".yaml",
-          ".yml",
-          ".json"
-        ],
         "filenames": [
           "openapi.*",
           "swagger.*"
         ],
-        "firstLine": "^.*(openapi|asyncapi).*$",
-        "configuration": "./language-configuration.json"
+        "configuration": "./language-configuration.json",
+        "icon": {
+          "light": "./images/icon.png",
+          "dark": "./images/icon.png"
+        }
       }
     ],
     "configurationDefaults": {
