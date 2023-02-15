@@ -49,7 +49,7 @@
 	},
   "dependencies": {
     "@swagger-api/apidom-ls": "^0.40.2",
-    "vscode-languageserver": "^7.0.0",
+    "vscode-languageserver": "^8.1.0",
     "vscode-jsonrpc": "^6.0.0",
     "vscode-languageserver-textdocument": "^1.0.1"
   },
