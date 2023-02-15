@@ -31,7 +31,7 @@
     "lint:fix": "eslint ./ --fix"
   },
 	"dependencies": {
-		"vscode-languageclient": "^7.0.0"
+		"vscode-languageclient": "^8.1.0"
   },
 	"devDependencies": {
 		"@types/vscode": "1.52.0",
